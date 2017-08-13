@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+		<!--   IE浏览器与web标准不兼容 -->
+		<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE9" />
+		<!-- 清除缓存 -->
+		<meta http-equiv="pragma" content="no-cache">
+		<meta http-equiv="cache-control" content="no-cache">
+		<meta http-equiv="expires" content="0">
+		<meta name="author" content="独泪了无痕" />
+		<title>百度地图</title>
+		<!--引用百度地图API--不可省略-->
+		<script type="text/javascript" src="http://api.map.baidu.com/api?ak=ksscNVw2Ufkj13mA4QQ8B5Vr&v=2.0"></script>
+		<!-- <script type="text/javascript" src="http://api.map.baidu.com/api?key=&v=1.1&services=true"></script> -->
+		<script src="../../../../js/jquery/jquery-1.10.2.min.js" type="text/javascript" charset="utf-8"></script>
+		<style type="text/css">
+			html,
+			body {
+				width: 100%;
+				height: 100%;
+				padding: 0;
+				margin: 0;
+				font-family: "微软雅黑";
+			}
+			
+			.iw_poi_title {
+				color: #CC5522;
+				font-size: 14px;
+				font-weight: bold;
+				overflow: hidden;
+				padding-right: 13px;
+				white-space: nowrap;
+			}
+			
+			.iw_poi_content {
+				font: 12px arial, sans-serif;
+				overflow: visible;
+				padding-top: 4px;
+				white-space: -moz-pre-wrap;
+				word-wrap: break-word;
+			}
+		</style>
+	</head>
+
+	<body>
+		<!--百度地图容器-->
+		<div style="height: 650px; padding: 5px; border: #ccc solid 1px;" id="dituContent"></div>
+	</body>
+	<script type="text/javascript">
+		$(function() {
+			var map;
+			initBaiduMap();
+		});
+		/** 创建和初始化地图函数 */
+		function initBaiduMap() {
+			createMap(); //创建地图
+			setMapEvent(); //设置地图事件
+			addMapControl(); //向地图添加控件
+			addMarker(); //向地图中添加marker
+			addMapOverlay(); //向地图添加覆盖物
+		}
+
+		/** 创建地图函数： */
+		function createMap() {
+			// 百度地图API功能
+			map = new BMap.Map("dituContent"); // 在百度地图容器中创建一个地图Map实例
+			var point = new BMap.Point(116.359672, 39.982998); //初始化地图,设置中心点坐标
+			map.centerAndZoom(point, 17); // 设定地图的中心点和坐标并将地图显示在地图容器中
+			map.addControl(new BMap.MapTypeControl()); //添加地图类型控件
+			// window.map = map; // 将map变量存储在全局
+		}
+
+		/** 地图事件设置函数 */
+		function setMapEvent() {
+			map.enableDragging(); //启用地图拖拽事件，默认启用(可不写)
+			map.enableScrollWheelZoom(); //启用地图滚轮放大缩小，默认禁用
+			map.enableDoubleClickZoom(); //启用鼠标双击放大，默认启用(可不写)
+			map.enableKeyboard(); //启用键盘上下左右键移动地图
+		}
+
+		/** 地图控件添加函数 */
+		function addMapControl() {
+
+			//向地图中添加缩放控件
+			var navControl = new BMap.NavigationControl({
+				anchor: BMAP_ANCHOR_TOP_LEFT, // 控件定位于地图的左上角
+				type: BMAP_NAVIGATION_CONTROL_LARGE
+				// 显示完整的平移缩放控件
+			});
+			map.addControl(navControl);
+
+			//向地图中添加缩略图控件
+			var ctrl_ove = new BMap.OverviewMapControl({
+				anchor: BMAP_ANCHOR_BOTTOM_RIGHT, // 控件定位于地图的右下角
+				isOpen: true
+			});
+			map.addControl(ctrl_ove);
+
+			//向地图中添加比例尺控件
+			var scaleControl = new BMap.ScaleControl({
+				anchor: BMAP_ANCHOR_BOTTOM_LEFT
+				// 控件定位于地图的左下角
+			});
+			map.addControl(scaleControl);
+		}
+
+		//标注点数组
+		var markerArr = [{
+			title: "学院国际大厦", // 信息窗口标题
+			content: "<br/>地　　址：北京市海淀区知春路1号,学院国际大厦1层 <br/> 咨询电话：010-82318888 / 4008104588 <br/>",
+			point: "116.359672|39.982998",
+			isOpen: true, // 是否显示信息窗口
+			icon: {
+				width: 23, // 信息窗口宽度
+				height: 25, // 信息窗口高度
+				l: 0,
+				t: 0,
+				x: 6,
+				lb: 10
+			}
+		}];
+
+		/** 标注点数组  */
+		function addMarker() {
+			for(var i = 0; i < markerArr.length; i++) {
+				var json = markerArr[i];
+				var p0 = json.point.split("|")[0];
+				var p1 = json.point.split("|")[1];
+				var point = new BMap.Point(p0, p1);
+				var iconImg = createIcon(json.icon);
+				var marker = new BMap.Marker(point, {
+					icon: iconImg
+				});
+				var iw = createInfoWindow(i);
+				var label = new BMap.Label(json.title, {
+					"offset": new BMap.Size(json.icon.lb - json.icon.x + 10, -20)
+				});
+				marker.setLabel(label);
+				map.addOverlay(marker);
+				label.setStyle({
+					borderColor: "#808080",
+					color: "#333",
+					cursor: "pointer"
+				});
+
+				(function() {
+					var index = i;
+					var _iw = createInfoWindow(i);
+					var _marker = marker;
+					_marker.addEventListener("click", function() {
+						this.openInfoWindow(_iw); //开启信息窗口
+					});
+					_iw.addEventListener("open", function() {
+						_marker.getLabel().hide();
+					})
+					_iw.addEventListener("close", function() {
+						_marker.getLabel().show();
+					})
+					label.addEventListener("click", function() {
+						_marker.openInfoWindow(_iw); //开启信息窗口
+					})
+					if(!!json.isOpen) {
+						label.hide();
+						_marker.openInfoWindow(_iw); //开启信息窗口
+					}
+				})()
+			}
+		}
+
+		/** 创建InfoWindow */
+		function createInfoWindow(i) {
+			var json = markerArr[i];
+			/**  // 创建信息窗口对象 */
+			var iw = new BMap.InfoWindow(
+				"<b class='iw_poi_title' title='" + json.title + "'>" +
+				json.title + "</b><div class='iw_poi_content'>" +
+				json.content + "</div>");
+			return iw;
+		}
+
+		/* 创建一个Icon */
+		function createIcon(json) {
+			var icon = new BMap.Icon(
+				"http://app.baidu.com/map/images/us_mk_icon.png",
+				new BMap.Size(json.width, json.height), {
+					// 指定定位位置。  
+					// 当标注显示在地图上时，其所指向的地理位置距离图标左上   
+					// 角各偏移10像素和25像素。您可以看到在本例中该位置即是  
+					// 图标中央下端的尖角位置。
+					offset: new BMap.Size(json.lb, json.height),
+					// 设置图片偏移。  
+					// 当需要从一幅较大的图片中截取某部分作为标注图标时，需要指定大图的偏移位置，此做法与css sprites技术类似。
+					imageOffset: new BMap.Size(0, 0),
+					infoWindowOffset: new BMap.Size(json.lb, 1)
+
+				})
+			return icon;
+		}
+		/** 向地图添加覆盖物 */
+		function addMapOverlay() {
+
+		}
+	</script>
+
+</html>
