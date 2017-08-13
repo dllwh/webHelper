@@ -1,0 +1,166 @@
+@charset "gb2312";
+.styledTable {
+	border: 2px solid #357DF5;
+	text-align: center;
+	margin: 0.5em auto;
+	border-collapse: collapse;
+	font-size: 1em;
+	line-height: 2em;
+	font-weight: normal;
+	color: #000;
+}
+
+.styledTable td {
+	color: #000;
+	border-bottom: 1px solid #357DF5;
+	border-left: 1px solid #357DF5;
+	text-align: center;
+	padding: 1px 4px;
+}
+
+.styledTable td.left {
+	text-align: left;
+}
+
+.styledTable th {
+	padding: 1px 4px;
+	border-bottom: 1px solid #357DF5;
+	border-left: 1px solid #357DF5;
+	background: #DAEFFD;
+	text-align: center;
+	color: #2F6A60;
+	font-weight: bold;
+}
+
+.styledTable a,
+.styledTable a:link,
+.styledTable a:visited {
+	color: #346283;
+	text-decoration: none;
+	margin-right: 2px;
+	margin-left: 2px;
+}
+
+.styledTable a:hover,
+.styledTable a:active {
+	color: #FF6600;
+	text-decoration: underline;
+}
+
+#browserMainWrap #divIcon {
+	height: 130px;
+	width: 130px;
+	margin: 0 auto;
+}
+
+#browserMainWrap div.icon {
+	height: 20px;
+	width: 20px;
+	margin: 0 auto;
+}
+
+#browserMainWrap div.icon.true {
+	height: 20px;
+	width: 20px;
+	background: url(../../images/checkBrowser/flag.png) no-repeat 0px 0px;
+}
+
+#browserMainWrap div.icon.false {
+	height: 20px;
+	width: 20px;
+	background: url(../../images/checkBrowser/flag.png) no-repeat -20px 0px;
+}
+
+#browserMainWrap div.icon.alert {
+	height: 20px;
+	width: 20px;
+	background: url(../../images/checkBrowser/flag.png) no-repeat -40px 0px;
+}
+
+#browserMainWrap #browserIntroPanel p {
+	text-indent: 2em;
+	margin: 0;
+	padding: 3px 0;
+}
+
+#browserMainWrap #browserIntroPanel p.title {
+	font-size: 12px;
+	line-height: 30px;
+	font-weight: bold;
+	color: #3366FF;
+	margin: 10px 0 0;
+	padding: 0 0 0 10px;
+	border-bottom: 2px solid #327BF5;
+	text-indent: 0;
+	background: #D0EAFD;
+}
+
+#browserMainWrap #browerIcon {
+	width: 130px;
+	height: 130px;
+	margin: 0 auto;
+}
+
+#browserMainWrap #browerIcon.IE6 {
+	background: url(../../images/browser/ie6.png) no-repeat 0px 0px;
+}
+
+#browserMainWrap #browerIcon.IE7 {
+	background: url(../../images/browser/ie7.png) no-repeat 0px 0px;
+}
+
+#browserMainWrap #browerIcon.IE8 {
+	background: url(../../images/browser/ie8.png) no-repeat 0px 0px;
+}
+
+#browserMainWrap #browerIcon.IE9 {
+	background: url(../../images/browser/ie9.png) no-repeat 0px 0px;
+}
+
+#browserMainWrap #browerIcon.IE10 {
+	background: url(../../images/browser/ie9.png) no-repeat 0px 0px;
+}
+
+#browserMainWrap #browerIcon.IE11 {
+	background: url(../../images/browser/ie9.png) no-repeat 0px 0px;
+}
+
+#browserMainWrap #browerIcon.Firefox {
+	background: url(../../images/browser/firefox.png) no-repeat 0px 0px;
+}
+
+#browserMainWrap #browerIcon.Chrome {
+	background: url(../../images/browser/chrome.png) no-repeat 0px 0px;
+}
+
+#browserMainWrap #browerIcon.Opera {
+	background: url(../../images/browser/opera.png) no-repeat 0px 0px;
+}
+
+#browserMainWrap #browerIcon.Netscapes {
+	background: url(../../images/browser/netscapes.png) no-repeat 0px 0px;
+}
+
+#browserMainWrap #browerIcon.Safari {
+	background: url(../../images/browser/safari.png) no-repeat 0px 0px;
+}
+
+#browserMainWrap #browerIcon.Sogou {
+	background: url(../../images/browser/sogou.png) no-repeat 0px 0px;
+}
+
+#browserMainWrap #browerIcon.TT {
+	background: url(../../images/browser/tt.png) no-repeat 0px 0px;
+}
+
+#browserMainWrap #browerIcon.Maxthon {
+	background: url(../../images/browser/maxthon.png) no-repeat 0px 0px;
+}
+
+#browserMainWrap #browerIcon.World {
+	background: url(../../images/browser/world.png) no-repeat 0px 0px;
+}
+
+#browserMainWrap #browerIcon.SE360 {
+	background: url(../../images/browser/360se.png) no-repeat 0px 0px;
+}

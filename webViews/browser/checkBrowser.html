@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+		<title>浏览器检测</title>
+		<meta name="keywords" content="在线浏览器检查,浏览器检测工具" />
+		<meta name="Description" content="浏览器检查工具可以在线使用网页版检测你的浏览器名称、浏览器版本、电脑操作系统以及组件安装情况。" />
+		<link rel="shortcut icon" type="image/ico" href="../../images/checkBrowser/favicon.ico">
+		<link rel="apple-touch-icon" href="../../images/checkBrowser/favicon.ico">
+		<link rel="Bookmark" href="../../images/checkBrowser/favicon.ico" />
+		<script src="../../js/jquery/jquery-1.10.2.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../../js/plugins/browserHelper.js" type="text/javascript" charset="utf-8"></script>
+		<link rel="stylesheet" type="text/css" href="../../css/browser/style.css"/>
+		<link rel="stylesheet" type="text/css" href="../../css/browser/main.css" />
+	</head>
+
+	<body>
+		<div class="head">
+			<div class="head01">
+				<span class="r"></span>
+			</div>
+			<div class="logo">
+				<a></a>
+			</div>
+		</div>
+		<div class="warp">
+			<div class="i_l">
+				<div class="nav">
+					<ul>
+						<li>
+							<em class="ico01"></em>
+							<a href="#" target="_self">首页</a>
+						</li>
+						<li class="this">
+							<em class="ico02"></em>
+							<a href="/webHelper/webViews/browser/checkBrowser.html" target="_self">浏览器检查</a>
+						</li>
+					</ul>
+				</div>
+				<div class="navb"></div>
+			</div>
+			<div class="i_r">
+				<div class="r_03">
+					<div class="r_03_tit">浏览器检查</div>
+					<div class="r_long_c">
+						<div class="box_21" id="browserMainWrap">
+							<div class="box_22">
+								<table width="100%" cellspacing="0" class="table">
+									<tr>
+										<td colspan="5" class="tit01">基本信息</td>
+									</tr>
+									<tr>
+										<td width="18%" class="tablehead" rowspan="4" id="browerIcon"></td>
+										<td width="11%" class="tablehead">浏览器名称</td>
+										<td width="30%" id="browserName">-</td>
+										<td width="11%" width="20%" class="tablehead">浏览器版本</td>
+										<td width="30%" id="browserVer">-</td>
+									</tr>
+									<tr>
+										<td class="tablehead">浏览器内核</td>
+										<td id="engineName">-</td>
+										<td class="tablehead">内核版本</td>
+										<td id="engineVer">-</td>
+									</tr>
+									<tr>
+										<td class="tablehead">操作系统</td>
+										<td id="OSName">-</td>
+										<td class="tablehead">默认语言</td>
+										<td id="OSLanguage">-</td>
+									</tr>
+									<tr>
+										<td colspan="4" id="useragent">-</td>
+									</tr>
+								</table>
+							</div>
+							<div class="box_22">
+								<table width="100%" cellspacing="0" class="table">
+									<tr>
+										<td colspan="4" class="tit01">
+											<span><a name="plug" id="plug">功能检测</a></span>
+										</td>
+									</tr>
+									<tr>
+										<td width="5%" class="tablehead" style="text-align:center">序号</td>
+										<td width="25%" class="tablehead" style="text-align:center">功能</td>
+										<td width="10%" class="tablehead" style="text-align:center">是否支持</td>
+										<td class="tablehead" style="text-align:center">说明</td>
+									</tr>
+									<tr>
+										<td class="tablehead" style="text-align:center">1</td>
+										<td>cookie</td>
+										<td>
+											<div id="bolCookie" class="icon"></div>
+										</td>
+										<td>打开cookie将允许网站记录您的必要信息，建议开启</td>
+									</tr>
+									<tr>
+										<td class="tablehead" style="text-align:center">2</td>
+										<td>Flash动画播放</td>
+										<td>
+											<div id="bolFlash" class="icon"></div>
+										</td>
+										<td>检测您的浏览器是否支持播放Flash动画</td>
+									</tr>
+									<tr>
+										<td class="tablehead" style="text-align:center">3</td>
+										<td>Java程序运行</td>
+										<td>
+											<div id="bolJava" class="icon"></div>
+										</td>
+										<td>检测您的浏览器是否支持运行Java程序</td>
+									</tr>
+									<tr>
+										<td class="tablehead" style="text-align:center">4</td>
+										<td>Ajax加载</td>
+										<td>
+											<div id="bolAjax" class="icon"></div>
+										</td>
+										<td>检测您的浏览器是否支持无刷新异步加载外部文件</td>
+									</tr>
+									<tr>
+										<td class="tablehead" style="text-align:center">5</td>
+										<td>PDF文档阅读</td>
+										<td>
+											<div id="bolPDF" class="icon"></div>
+										</td>
+										<td>检测您的浏览器是否支持在线阅读PDF文件</td>
+									</tr>
+									<tr>
+										<td class="tablehead" style="text-align:center">6</td>
+										<td>Quick Time播放</td>
+										<td>
+											<div id="bolQuickTime" class="icon"></div>
+										</td>
+										<td>检测您的浏览器是否支持播放Quick Time视频</td>
+									</tr>
+									<tr>
+										<td class="tablehead" style="text-align:center">7</td>
+										<td>Windows Media Player</td>
+										<td>
+											<div id="bolWMP" class="icon"></div>
+										</td>
+										<td>检测您的浏览器是否支持播放Windows Media Player视频</td>
+									</tr>
+									<tr>
+										<td class="tablehead" style="text-align:center">8</td>
+										<td>Realplayer播放</td>
+										<td>
+											<div id="bolRealPlayer" class="icon"></div>
+										</td>
+										<td>检测您的浏览器是否支持播放RealPlayer视频</td>
+									</tr>
+									<tr>
+										<td class="tablehead" style="text-align:center">9</td>
+										<td>透明度效果</td>
+										<td>
+											<div id="bolAlpha" class="icon"></div>
+										</td>
+										<td>检测您的浏览器是否支持网络标准的新特性 - 透明度设置</td>
+									</tr>
+								</table>
+							</div>
+							<div class="box_22">
+								<table width="100%" cellspacing="0" class="table">
+									<tr>
+										<td class="tablehead">1、浏览器为何重要？</td>
+									</tr>
+									<tr>
+										<td style="text-indent: 2em;">
+											浏览器是网站和网站用户之间互相联系的桥梁，其运行是否稳定、展示网页是否准确，决定了网站表现的好坏，而它能否如实地反馈用户的操作，则决定了网站是否能正确理解用户的意图并执行正确的操作。可以说，一款优秀的浏览器，帮助网站和用户互相有效地沟通，达成目标；而一款不合格的浏览器，将会为网站和用户间的沟通带来不可预期的问题。
+										</td>
+									</tr>
+								</table>
+							</div>
+							<div class="box_22">
+								<table width="100%" cellspacing="0" class="table">
+									<tr>
+										<td class="tablehead">2、为何会提醒我更换浏览器？IE6或IE7内核的浏览器存在哪些问题？</td>
+									</tr>
+									<tr>
+										<td style="text-indent: 2em;">
+											IE系列浏览器是Windows平台的默认网络浏览器，因此用户量极大。但是，由于IE6、IE7等早期浏览器（IE6浏览器诞生已近10年）没有充分考虑相关技术标准的要求，加之多年来网络技术日益发展，这些浏览器已经脱离了网络技术的主流。无论是在安全性、运行速度等方面，这两款浏览器都具有很大的问题，因此，微软已经建议用户采用新的浏览器来取代这些日益老迈的浏览器。<br> 　　
+											除IE6、IE7外，其他一些浏览器虽然并非微软出品，但是依旧沿用了微软的代码，这些浏览器就是人们常说的“IE内核”浏览器，本质上来说，它们与IE6、IE7并无不同，只是操作界面有所改进，同样继承了IE6、IE7存在的诸多问题。近来，越来越多的IE内核浏览器开始改用其他内核或者成为双内核浏览器，正是顺应了网络技术发展的潮流。
+										</td>
+									</tr>
+								</table>
+							</div>
+							<div class="box_22">
+								<table width="100%" cellspacing="0" class="table">
+									<tr>
+										<td class="tablehead">3、评判浏览器是否优秀的标准是什么？</td>
+									</tr>
+									<tr>
+										<td style="text-indent: 2em;">
+											信息技术日益飞速发展，各种网络新技术也不断出现。能够符合其中绝大多数规范的浏览器被称作现代浏览器，如：FireFox、Chrome等。这些浏览器除稳定、规范外，还具有速度快、功能强、使用方便的特点。建议尝试和使用这些现代浏览器。
+										</td>
+									</tr>
+								</table>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+
+	<script type="text/javascript">
+		$(function(){
+			// 浏览器名称
+			$("#browserName").html($.browser.name);	
+			// 浏览器版本
+			$("#browserVer").html($.browser.version);
+			// 浏览器内核
+			$("#engineName").html($.browser.engine);	
+			// 内核版本
+			$("#engineVer").html($.browser.engineVersion);	
+			// 操作系统
+			$("#OSName").html($.browser.OS);
+			// 默认语言
+			$("#OSLanguage").html($.browser.language);
+			// HTTP 请求的用户代理头的值。
+			$("#useragent").html($.browser.userAgent);
+			
+			switch ($.browser.name) {
+				case "unknown":
+					$("#browserName").html("未知");	
+					$("#browerIcon").attr("class",$.browser.name);	
+					break;
+				case "Internet Explorer":
+					switch ($.browser.version) {
+						case 6:
+							$("#browerIcon").attr("class","IE6");	
+							break;
+						case 7:
+							$("#browerIcon").attr("class","IE7");	
+							break;
+						case 8:
+							$("#browerIcon").attr("class","IE8");	
+							break;
+						case 9:
+							$("#browerIcon").attr("class","IE9");	
+							break;
+						case 10:
+							$("#browerIcon").attr("class","IE10");	
+							break;
+						case 11:
+							$("#browerIcon").attr("class","IE11");	
+							break;
+					}
+					break;
+				case "Tencent Traveler":
+					$("#browserName").html("腾讯浏览器");	
+					$("#browerIcon").attr("class","TT");	
+					break;
+				case "Tencent Traveler":
+					$("#browserName").html("搜狗浏览器");	
+					$("#browerIcon").attr("class","Sougou");	
+					break;
+				case "Maxthon":
+					$("#browserName").html("遨游浏览器");	
+					$("#browerIcon").attr("class","Maxthon");	
+					break;
+				case "The World":
+					$("#browserName").html("世界之窗");	
+					$("#browerIcon").attr("class","World");	
+					break;
+				case "360SE":
+					$("#browserName").html("360浏览器");	
+					$("#browerIcon").attr("class","SE360");	
+					break;
+				default:	
+					$("#browerIcon").attr("class",$.browser.name);	
+			}
+			
+			switch ($.browser.engine) {
+				case "Trident":
+					$("#engineName").html("Trident（IE内核）");
+					if ($.browser.engineVersion =="4(IE6)") {
+						fixPng();
+					} 
+					if ($.browser.engineVersion =="4(IE6)" || $.browser.engineVersion =="4(IE7)") {
+						showAlert();
+					} 
+					break;
+			}
+			
+			switch ($.browser.language) {
+				case "zh-cn":
+					$("#OSLanguage").html("中文");
+					break;
+			}
+				
+			//功能插件
+			$("#bolCookie").addClass($.browser.cookieEnabled ? "true" : "false");	
+			$("#bolFlash").addClass($.browser.flashSupport ? "true" : "false");	
+			$("#bolJava").addClass($.browser.javaSupport ? "true" : "false");	
+			$("#bolAjax").addClass($.browser.ajaxSupport ? "true" : "false");	
+			$("#bolPDF").addClass($.browser.pdfSupport ? "true" : "false");	
+			$("#bolQuickTime").addClass($.browser.quickTimeSupport ? "true" : "false");	
+			$("#bolWMP").addClass($.browser.windowsMediaPlayerSupport ? "true" : "false");	
+			$("#bolRealPlayer").addClass($.browser.realplayerSupport ? "true" : "false");	
+			$("#bolAlpha").addClass($.browser.opacitySupport ? "true" : "false");	
+		});
+	</script>
+</html>
