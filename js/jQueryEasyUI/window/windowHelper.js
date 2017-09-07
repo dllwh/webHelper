@@ -60,3 +60,87 @@ var showMyWindow = function(id, title, href, width, height, modal, minimizable, 
 var closeMyWindow = function(id) {
 	$('#' + id).window('close');
 }
+
+/**
+ * 打开弹出窗
+ * @param title		标题
+ * @param url		iframe地址
+ * @param options	可选参数
+ */
+function openWindow(title, url, options) {
+	options = options || {};
+	if(options.size && options.size.indexOf("x") >= 0) {
+		options.width = options.size.split("x")[0];
+		options.height = options.size.split("x")[1];
+	}
+	$("#dialogWindow iframe").attr("src", url);
+	$("#dialogWindow").window({
+		closed: false,
+		modal: true,
+		title: title || '增加',
+		width: options.width || 700,
+		height: options.height || 450,
+		onClose: function() {
+			$("#dialogWindow iframe").removeAttr("src");
+			//关闭popup
+			try {
+				$("#popupWindow").window("close");
+			} catch(err) {
+				//没有弹层
+			}
+
+		}
+	});
+	$("#dialogWindow").window("center");
+}
+
+/**
+ * 打开一个弹层，用于选择一些信息（如城市等）
+ * @param ipt	需要弹层的input或其它元素
+ * @param title	弹层标题
+ * @param url	页面ulr
+ * @param options	其它参数（参考easyui-window）
+ */
+function openPopup(ipt, title, url, options) {
+	ipt = $(ipt);
+	popup.ipt = ipt;
+	var os1 = $("#dialogWindow").offset();
+	var os2 = ipt.offset();
+
+	if(!url || popup.currUrl != url) {
+		$("#popupWindow iframe").attr("src", url);
+	}
+	if(!options) {
+		options = {};
+	}
+	options.title = title || "popup";
+	options.top = os1.top + os2.top + ipt.outerHeight();
+	options.left = os1.left + os2.left;
+	options.onClose = function() {
+		//回调关闭事件
+		if(top.window.popup.close) {
+			top.window.popup.close();
+		}
+	}
+	//回调显示事件
+	if(top.window.popup.show) {
+		top.window.popup.show();
+	}
+	$("#popupWindow").window(options);
+	popup.currUrl = url;
+}
+
+
+/**
+ * 关闭弹层
+ **/
+function closePopup() {
+	$("#popupWindow").window("close");
+}
+
+/**
+ * 关闭弹出窗口
+ */
+function closeWindow() {
+    $("#dialogWindow").window("close");
+}

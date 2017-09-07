@@ -53,3 +53,28 @@ var showProcess = function(isShow, title, msg) {
 		msg: msg
 	});
 }
+
+/**
+ * 显示消息
+ */
+function showMsg(msg) {
+	top.window.$.messager.show({
+		title: '消息',
+		msg: '<div style="padding-top: 10px;">' + msg || "消息内容！" + '</div>',
+		timeout: 3000,
+		showType: 'slide'
+	});
+}
+
+/**
+ * 确认消息
+ */
+function confirmMsg(msg, successFunc) {
+	top.window.$.messager.confirm('请确认', '<div style="padding-top: 10px;">' + (msg || 'Are you confirm this?') + "</div>", function(r) {
+		if(r) {
+			if($.isFunction(successFunc)) {
+				successFunc();
+			}
+		}
+	});
+}
