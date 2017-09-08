@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <title>Validator</title>
+    <meta charset="UTF-8">
+
+    <script src="../js/plugins/validator.js"></script>
+    <script src="../js/jquery/jquery-1.10.2.min.js"></script>
+
+    <script>
+        $(function () {
+            $('#f').submit(function (e) {
+                e.preventDefault();
+                var _validator = new Validator({
+                    message: {
+                        myPwd: '无效的密码，请输入6-36个字符。',
+                        mobile:'出现问题的input元素',
+                        required: 'HelloWorld' //例子，重定义这这个表单提交时的错误信息
+                    },
+                    validType: {
+                        myPwd: {//例子，扩展自己的验证规则
+                            check: function (s) {
+                                return s.length >= 6 && s.length <= 36;
+                            }
+                        }
+                    }
+                });
+                var errors = _validator.checkForm(this);
+                if (Array.isArray(errors) && errors.length > 0) {
+                    for (var i = 0, l = errors.length; i !== l; i++) {
+                        var o = errors[i];
+                        var _input = o.target;//出现问题的input元素
+                        var _error = o.error;//错误信息
+                        console.log('input name: %s, invalid message: %s', _input['name'], _error['invalidMessage']);
+                    }
+                }
+            });
+        })
+    </script>
+</head>
+<body>
+
+<form action="#" id="f">
+	<div>
+		<label for="loginName">登录名：</label>
+		<input id="loginName" data-validator-options="required:true,validType:['loginName','length[6,32]']" name="loginName">
+	</div>
+	<div>
+		<label for="phone">手机号码：</label>
+		<input id="phone" name="phone" data-validator-options="required:true,validType:['mobile']">
+	</div>
+	<div>
+		<label for="pwd">密码：</label>
+		<input id="pwd" name="pwd" data-validator-options="required:true,validType:['myPwd']">
+	</div>
+	<div>
+		<label for="pwd2">确认密码：</label>
+		<input id="pwd2" name="pwd2" data-validator-options="required:true,validType:['equalTo[pwd]']">
+	</div>
+	<button type="submit">提交</button>
+</form>
+
+</body>
+</html>
