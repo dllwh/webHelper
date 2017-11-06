@@ -1,0 +1,181 @@
+html,
+body,
+div,
+span {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font: inherit;
+	font-size: 100%;
+	vertical-align: baseline
+}
+
+html {
+	line-height: 1
+}
+
+table {
+	border-collapse: collapse;
+	border-spacing: 0
+}
+
+th,
+td {
+	text-align: left;
+	font-weight: normal;
+	vertical-align: middle
+}
+
+
+a img {
+	border: none
+}
+
+html {
+	*overflow: auto
+}
+
+.container {
+	position: relative;
+	padding-left: 16px
+}
+
+.content {
+	padding-left: 10px;
+	min-height: 200px
+}
+
+.column {
+	position: relative;
+	height: 23px;
+	border-bottom: 1px solid #d4d4d4;
+	margin-bottom: 10px
+}
+
+.container .content .column span.current {
+	position: relative;
+	top: 0px;
+	display: inline-block;
+	color: #1da02b;
+	font-size: 14px;
+	font-weight: bold;
+	height: 22px;
+	line-height: 22px;
+	border-bottom: 2px solid #ff9d02
+}
+
+.container .content table.kv-table td.kv-label {
+	width: 130px
+}
+
+.container .content table.kv-table {
+	margin-bottom: 20px
+}
+
+.container .content table.kv-table td.kv-label {
+	height: 26px;
+	font-size: 12px
+}
+
+.container .content table.kv-table td.kv-content {
+	height: 26px;
+	font-size: 12px
+}
+
+.container .content table.kv-table td.kv-content a {
+	color: #1da02b;
+	text-decoration: none
+}
+
+.container .content table.kv-table td.kv-content a:hover {
+	text-decoration: underline
+}
+
+.kv-table {
+	border-right: 1px solid #cacaca;
+}
+
+.kv-table .kv-table-row {
+	border-bottom: 1px solid #cacaca
+}
+
+.kv-table .kv-table-row .kv-item {
+	padding-left: 134px
+}
+
+.kv-table .kv-table-row .kv-item .kv-label {
+	float: left;
+	padding: 0 10px;
+	margin-left: -134px;
+	width: 112px;
+	background: #f5f5f5;
+	border: 1px solid #cacaca;
+	border-bottom: none;
+	border-top: none
+}
+
+.kv-table .kv-table-row .kv-item .kv-content-wrap {
+	float: left;
+	width: 100%
+}
+
+.kv-table .kv-table-row .kv-item .kv-content {
+	padding: 10px
+}
+
+.kv-table .kv-table-row.col-3 .kv-item-wrap {
+	float: left;
+	width: 33.33%
+}
+
+.kv-table .kv-table-row.col-2 .kv-item-wrap {
+	float: left;
+	width: 33.33%
+}
+
+table.kv-table {
+	width: 100%;
+}
+
+table.kv-table .kv-label {
+	padding: 0 10px;
+	width: 114px;
+	background: #f5f5f5;
+	border: 1px solid #cacaca;
+	border-top: none;
+	font-weight: bold;
+}
+
+table.kv-table td.kv-content,
+table.kv-table td.kv-label {
+	height: 29px;
+	padding: 5px 0;
+	border-bottom: 1px solid #cacaca;
+	font-size: 14px;
+	padding-left: 20px
+}
+
+table.kv-table tr:first-child td.kv-content,
+table.kv-table tr:first-child td.kv-label {
+	border-top: 1px solid #cacaca
+}
+
+table.kv-table tr td.kv-content:last-child {
+	border-right: 1px solid #cacaca
+}
+
+table.kv-table tr .button {
+	text-align: center;
+	border-radius: 0;
+	text-indent: 0;
+	height: 32px
+}
+
+table.kv-table .kv-content {
+	width: 260px;
+	padding: 5px 10px
+}
+
+table.kv-table .textarea-wrap textarea {
+	width: 98%
+}
