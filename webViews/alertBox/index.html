@@ -49,20 +49,16 @@
 					</div>
 					<hr>
 					<div>
-						<pre>
-							<code>
-								PostbirdAlertBox.alert({
-								    'title': '提示标题',
-								    'content': '提示内容主体',
-								    'okBtn': '好的',
-								    'contentColor': 'red',
-								    'onConfirm': function () {
-								        console.log("回调触发后隐藏提示框");
-								        alert("回调触发后隐藏提示框");
-								    }
-								});
-							</code>
-						</pre>
+						<pre><code>PostbirdAlertBox.alert({
+    'title': '提示标题',
+    'content': '提示内容主体',
+    'okBtn': '好的',
+    'contentColor': 'red',
+    'onConfirm': function () {
+        console.log("回调触发后隐藏提示框");
+        alert("回调触发后隐藏提示框");
+    }
+});</code></pre>
 					</div>
 				</div>
 				<div class="row">
@@ -75,22 +71,20 @@
 					</div>
 					<hr>
 					<div>
-						<pre>
-							<code>
-								PostbirdAlertBox.confirm({
-								    'title': '提示标题',
-								    'content': '离开本页面进行跳转',
-								    'okBtn': '好的',
-								    'contentColor': 'red',
-								    'onConfirm': function () {
-								        alert("OK - 回调触发后隐藏提示框");
-								    },
-								    'onCancel': function () {
-								        alert("Cancel-回调触发后隐藏提示框");
-								    }
-								});
-							</code>
-						</pre>
+						<pre><code>PostbirdAlertBox.confirm({
+    'title': '提示标题',
+    'content': '回调触发后隐藏提示框',
+    'okBtn': '好的',
+    'contentColor': 'red',
+    'onConfirm': function () {
+        console.log("OK - 回调触发后隐藏提示框");
+        alert("OK - 回调触发后隐藏提示框");
+    },
+    'onCancel': function () {
+        console.log("Cancel-回调触发后隐藏提示框");
+        alert("Cancel-回调触发后隐藏提示框");
+    }
+});</code></pre>
 					</div>
 				</div>
 				<div class="row">
@@ -103,20 +97,18 @@
 					</div>
 					<hr>
 					<div>
-						<pre>
-							<code>
-								PostbirdAlertBox.prompt({
-								    'title': '请输入姓名',
-								    'okBtn': '提交',
-								    onConfirm: function (data) {
-								        alert("输入框内容是：" + data);
-								    },
-								    onCancel: function (data) {
-								        alert("输入框内容是：" + data);
-								    },
-								});
-							</code>
-						</pre>
+						<pre><code>PostbirdAlertBox.prompt({
+    'title': '请输入姓名',
+    'okBtn': '提交',
+    onConfirm: function (data) {
+        console.log("输入框内容是：" + data);
+        alert("输入框内容是：" + data);
+    },
+    onCancel: function (data) {
+        console.log("输入框内容是：" + data);
+        alert("输入框内容是：" + data);
+    },
+});</code></pre>
 					</div>
 				</div>
 				<div class="row">
