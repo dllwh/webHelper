@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+		<!--   IE浏览器与web标准不兼容 -->
+		<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE9" />
+		<!-- 清除缓存 -->
+		<meta http-equiv="pragma" content="no-cache">
+		<meta http-equiv="cache-control" content="no-cache">
+		<meta http-equiv="expires" content="0">
+		<meta name="author" content="独泪了无痕" />
+
+		<!--<script src="../../js/jquery-1.7.2.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../../js/template-alert.1.7.2.js" type="text/javascript" charset="utf-8"></script>-->
+		<script src="../../js/jquery/jquery-1.10.2.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../../js/template-alert.1.10.2.js" type="text/javascript" charset="utf-8"></script>
+		<link rel="stylesheet" type="text/css" href="../../css/template.css" />
+		<title>提示</title>
+		<style type="text/css">
+			table td {
+				border: 1px solid #ddd;
+				padding: 0 10px;
+			}
+			
+			.btn {
+				display: inline-block;
+				padding: 4px 10px 4px;
+				margin-bottom: 0;
+				font-size: 13px;
+				line-height: 18px;
+				color: #333;
+				text-align: center;
+				text-shadow: 0 1px 1px rgba(255, 255, 255, 0.75);
+				vertical-align: middle;
+				cursor: pointer;
+				background-color: #f5f5f5;
+				background-image: -ms-linear-gradient(top, #fff, #e6e6e6);
+				background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#fff), to(#e6e6e6));
+				background-image: -webkit-linear-gradient(top, #fff, #e6e6e6);
+				background-image: -o-linear-gradient(top, #fff, #e6e6e6);
+				background-image: linear-gradient(top, #fff, #e6e6e6);
+				background-image: -moz-linear-gradient(top, #fff, #e6e6e6);
+				background-repeat: repeat-x;
+				border: 1px solid #ccc;
+				border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+				border-color: #e6e6e6 #e6e6e6 #bfbfbf;
+				border-bottom-color: #b3b3b3;
+				-webkit-border-radius: 4px;
+				-moz-border-radius: 4px;
+				border-radius: 4px;
+				filter: progid:dximagetransform.microsoft.gradient(startColorstr='#ffffff', endColorstr='#e6e6e6', GradientType=0);
+				filter: progid:dximagetransform.microsoft.gradient(enabled=false);
+				-webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
+				-moz-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
+				box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
+			}
+			
+			.btn-primary {
+				background-color: #0074cc;
+				background-image: -ms-linear-gradient(top, #08c, #05c);
+				background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#08c), to(#05c));
+				background-image: -webkit-linear-gradient(top, #08c, #05c);
+				background-image: -o-linear-gradient(top, #08c, #05c);
+				background-image: -moz-linear-gradient(top, #08c, #05c);
+				background-image: linear-gradient(top, #08c, #05c);
+				background-repeat: repeat-x;
+				border-color: #05c #05c #003580;
+				border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+				filter: progid:dximagetransform.microsoft.gradient(startColorstr='#0088cc', endColorstr='#0055cc', GradientType=0);
+				filter: progid:dximagetransform.microsoft.gradient(enabled=false);
+			}
+			
+			.btn-success {
+				background-color: #5bb75b;
+				background-image: -ms-linear-gradient(top, #62c462, #51a351);
+				background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#62c462), to(#51a351));
+				background-image: -webkit-linear-gradient(top, #62c462, #51a351);
+				background-image: -o-linear-gradient(top, #62c462, #51a351);
+				background-image: -moz-linear-gradient(top, #62c462, #51a351);
+				background-image: linear-gradient(top, #62c462, #51a351);
+				background-repeat: repeat-x;
+				border-color: #51a351 #51a351 #387038;
+				border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+				filter: progid:dximagetransform.microsoft.gradient(startColorstr='#62c462', endColorstr='#51a351', GradientType=0);
+				filter: progid:dximagetransform.microsoft.gradient(enabled=false);
+			}
+			
+			.btn-warning {
+				background-color: #faa732;
+				background-image: -ms-linear-gradient(top, #fbb450, #f89406);
+				background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#fbb450), to(#f89406));
+				background-image: -webkit-linear-gradient(top, #fbb450, #f89406);
+				background-image: -o-linear-gradient(top, #fbb450, #f89406);
+				background-image: -moz-linear-gradient(top, #fbb450, #f89406);
+				background-image: linear-gradient(top, #fbb450, #f89406);
+				background-repeat: repeat-x;
+				border-color: #f89406 #f89406 #ad6704;
+				border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+				filter: progid:dximagetransform.microsoft.gradient(startColorstr='#fbb450', endColorstr='#f89406', GradientType=0);
+				filter: progid:dximagetransform.microsoft.gradient(enabled=false);
+			}
+			
+			.btn-danger {
+				background-color: #da4f49;
+				background-image: -ms-linear-gradient(top, #ee5f5b, #bd362f);
+				background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#ee5f5b), to(#bd362f));
+				background-image: -webkit-linear-gradient(top, #ee5f5b, #bd362f);
+				background-image: -o-linear-gradient(top, #ee5f5b, #bd362f);
+				background-image: -moz-linear-gradient(top, #ee5f5b, #bd362f);
+				background-image: linear-gradient(top, #ee5f5b, #bd362f);
+				background-repeat: repeat-x;
+				border-color: #bd362f #bd362f #802420;
+				border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+				filter: progid:dximagetransform.microsoft.gradient(startColorstr='#ee5f5b', endColorstr='#bd362f', GradientType=0);
+				filter: progid:dximagetransform.microsoft.gradient(enabled=false);
+			}
+			
+			.btn-info {
+				background-color: #49afcd;
+				background-image: -ms-linear-gradient(top, #5bc0de, #2f96b4);
+				background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#5bc0de), to(#2f96b4));
+				background-image: -webkit-linear-gradient(top, #5bc0de, #2f96b4);
+				background-image: -o-linear-gradient(top, #5bc0de, #2f96b4);
+				background-image: -moz-linear-gradient(top, #5bc0de, #2f96b4);
+				background-image: linear-gradient(top, #5bc0de, #2f96b4);
+				background-repeat: repeat-x;
+				border-color: #2f96b4 #2f96b4 #1f6377;
+				border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+				filter: progid:dximagetransform.microsoft.gradient(startColorstr='#5bc0de', endColorstr='#2f96b4', GradientType=0);
+				filter: progid:dximagetransform.microsoft.gradient(enabled=false);
+			}
+		</style>
+	</head>
+
+	<body>
+		<table width="100%" height="290">
+			<thead>
+				<tr>
+					<td height="34">
+						<strong>函数</strong>
+					</td>
+					<td>
+						<strong>实例</strong>
+					</td>
+					<td>
+						<strong>参数</strong>
+					</td>
+					<td>
+						<strong>说明</strong>
+					</td>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>
+						<a class="btn btn-primary" id="primary">权限提示</a>
+					</td>
+					<td></td>
+					<td></td>
+					<td></td>
+				</tr>
+				<tr>
+					<td>
+						<a class="btn btn-success" id="success">成功提示</a>
+					</td>
+					<td></td>
+					<td></td>
+					<td></td>
+				</tr>
+				<tr>
+					<td>
+						<a class="btn btn-warning" id="warning">警告提示</a>
+					</td>
+					<td></td>
+					<td></td>
+					<td></td>
+				</tr>
+				<tr>
+					<td>
+						<a class="btn btn-danger" id="danger">出错提示</a>
+					</td>
+					<td></td>
+					<td></td>
+					<td></td>
+				</tr>
+				<tr>
+					<td>
+						<a class="btn btn-info" id="info">询问提示</a>
+					</td>
+					<td></td>
+					<td></td>
+					<td></td>
+				</tr>
+			</tbody>
+		</table>
+	</body>
+	<script type="text/javascript">
+		$('#primary').click(function() {
+			$('body').alert({
+				type: 'primary'
+			});
+		});
+		$('#success').click(function() {
+			$('body').alert({
+				type: 'success'
+			});
+		});
+		$('#warning').click(function() {
+			$('body').alert({
+				type: 'warning'
+			});
+		});
+		$('#danger').click(function() {
+			$('body').alert({
+				type: 'danger'
+			});
+		});
+		$('#info').click(function() {
+			$('body').alert({
+				type: 'info',
+				buttons: [{
+					id: 'yes',
+					name: '确定',
+					callback: function () {
+						alert('确定')
+					}
+				}, {
+					id: 'no',
+					name: '取消',
+					callback: function () {
+						alert('取消')
+					}
+				}]
+			});
+		});
+	</script>
+
+</html>
