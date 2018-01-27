@@ -1,6 +1,30 @@
 /**
  * 扩展于jQuery.validate Form表单验证
  */
+// 以下为修改jQuery Validation插件兼容Bootstrap的方法，
+$.validator.setDefaults({
+	errorElement : 'span', //用什么标签标记错误，默认是 label，可以改成 em。
+	errorClass : 'help-block',   //指定错误提示的 css 类名，可以自定义错误提示的样式。
+	success:"valid",
+	highlight : function(element) {//可以给未通过验证的元素加效果、闪烁等。
+		$(element).closest('.form-group').removeClass('has-success').addClass('has-error has-feedback');
+	},
+	success : function(label) {//要验证的元素通过验证后的动作
+		var el=label.closest('.form-group').find("input");
+		el.next().remove();//与errorPlacement相似
+		el.after('<span class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>');
+		label.closest('.form-group').removeClass('has-error').addClass("has-feedback has-success");
+		label.remove();
+	},
+	errorPlacement : function(error, element) {//跟一个函数，可以自定义错误放到哪里
+		element.next().remove();//删除显示图标
+		element.after('<span class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span>');
+		element.closest('.form-group').append(error);//显示错误消息提示
+	},
+	submitHandler : function(form) {
+	}
+});
+
 $(document).ready(function() {
 	// 匹配密码，以字母开头，长度在6-12之间，必须包含数字和特殊字符。
 	jQuery.validator.addMethod("isPwd", function(value, element) {

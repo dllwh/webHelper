@@ -7,14 +7,14 @@ dllwh.data = dllwh.data || {}; // 用于存放临时的数据或者对象
 /**
  * 全局配置
  */
-var _ajaxCallback = function() {};
+var callbackFunHandler = function() {};
+
 $.ajaxSetup({
 	dataType: "json",
 	cache: false,
 	complete: function(XMLHttpRequest, textStatus) {
 		// 通过XMLHttpRequest取得响应头，sessionstatus， 
 		var sessionstatus = XMLHttpRequest.getResponseHeader("sessionstatus");
-		_ajaxCallback();
 		if(sessionstatus == "timeout") {
 			// 如果超时就处理 ，指定要跳转的页面(比如登陆页)
 
@@ -23,6 +23,7 @@ $.ajaxSetup({
 		} else if(textStatus == "notmodified") { // 错误请求，无法完成此操作
 		} else if(textStatus == "parsererror") { // 网络问题，请稍候重试...
 		}
+		callbackFunHandler();
 	}
 });
 
@@ -39,7 +40,7 @@ dllwh.getRootPath = function() {
 	var localhostPaht = curWwwPath.substring(0, pos);
 	// 获取带"/"的项目名，如：/uimcardprj
 	var projectName = pathName.substring(0, pathName.substr(1).indexOf('/') + 1);
-	return(localhostPaht + projectName)+"";
+	return(localhostPaht + projectName) + "";
 }
 
 /**
@@ -66,4 +67,32 @@ dllwh.isNotNullOrEmpty = function(obj) {
 /** 页面跳转 */
 dllwh.gotoUrl = function(href) {
 	window.location.href = href;
+}
+
+/** 是否存在指定函数  */
+dllwh.isExitsFunction = function(funcName) {
+	try {
+		if(typeof(eval(funcName)) == "function") {
+			return true;
+		}
+	} catch(error) {
+
+	}
+	return false;
+}
+
+/** 是否存在指定变量 */
+dllwh.isExitsVariable = function(variableName) {
+	try {
+		if(typeof(variableName) == "undefined") {
+			// alert("value is undefined"); 
+			return false;
+		} else {
+			// alert("value is true"); 
+			return true;
+		}
+	} catch(error) {
+
+	}
+	return false;
 }
